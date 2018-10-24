@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <!--server side static elem-->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Hotels</title>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav" id="hotelValue">
+
+                <h1 class="sidebar-brand">Available&nbsp;&nbsp;<span class="badge badge-pill badge-dark">Hotels</span></h1>
+                {% for hotel in listy %}
+                <li id="hotelRef">
+                    <a href="#">{{ hotel }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Pizzabakerz Hotel Application</h1>
+                        <p>This is a simple CRUD single Application web page to show the efective AJAX progress without reloading 
+                            the page again and again . This application is made with html5, css, bootstrap 4, jquery-3, flask and the backend is 
+                            powerd with mongodb atlas instance (Free tier by AWS)
+                        </p>
+                        <p>Made with love by &nbsp;&nbsp;&nbsp;<code>@Pizzaboy</code>.</p>
+
+                        <button type="button" class="btn btn-outline-primary" id="menu-toggle">Show or Hide Hotel</button>
+
+                        <!-- Button trigger register modal -->
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#registerationmodel" id="registerhotel">
+                            Register
+                        </button>
+
+                        <!-- register Modal -->
+                        <div class="modal fade" id="registerationmodel" tabindex="-1" role="dialog" aria-labelledby="registerModel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="registerModel">
+                                            <span class="badge badge-info">Register New Hotel</span>
+                                        </h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form>
+                                                <label for="exampleInputName">Hotel Name</label>
+                                                <input type="text" class="form-control" id="hotelnameReg" placeholder="Enter Hotel Name">
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-outline-success" data-dismiss="modal" id="regHotelButton">Add</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Button trigger update modal -->
+                        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#updatemodel" id="updateHotel">
+                            Update
+                        </button>
+
+                        <!-- update Modal -->
+                        <div class="modal fade" id="updatemodel" tabindex="-1" role="dialog" aria-labelledby="updatemodel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="updatemodel">
+                                            <span class="badge badge-info">Update Your Hotel</span>
+                                        </h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form>
+                                                <label for="exampleInputName">Hotel Name</label>
+                                                <input type="text" class="form-control" id="updateHotelname" placeholder="Enter Hotel Name" required><br><br>
+                                                <h3>
+                                                    <span class="badge badge-pill badge-dark">Menu &nbsp;&nbsp;
+                                                        <span class="badge badge-pill badge-light">Item</span></span>
+                                                </h3>
+                                                <div class="form-row">
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="Item name" id="menuItem">
+                                                    </div>
+                                                    <div class="col">
+                                                        <input type="text" class="form-control" placeholder="Price" id="menuPrice">
+                                                    </div>
+                                                </div>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-outline-success" data-dismiss="modal" id="addMenu">Add</button>
+
+                                        <button type="submit" class="btn btn-outline-warning" data-dismiss="modal" id="updatemenu">Update</button>
+
+                                        <button type="submit" class="btn btn-outline-danger" data-dismiss="modal" id="deleteMenu">Delete</button>
+
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Button trigger Delete modal -->
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodel" id="deleteHotelModel">
+                            Delete
+                        </button>
+
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deletemodel" tabindex="-1" role="dialog" aria-labelledby="delModel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="delModel">
+                                            <span class="badge badge-info">Delete Hotel</span>
+                                        </h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <form>
+                                                <label for="exampleInputName">Hotel Name</label>
+                                                <input type="text" class="form-control" id="delhname" placeholder="Enter Hotel Name">
+
+
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-outline-danger" data-dismiss="modal" id="deletehotelperm">Delete</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="hotelMenu">
+                        <h1 id="hotelHead">Hotel Menu</h1>
+                        <!--table data-->
+                        <table class="table table-hover table-dark">
+                            <thead>
+                                <tr class="bg-danger">
+                                    <th scope="col">Item Name</th>
+                                    <th scope="col">Price (Rs)</th>
+                                </tr>
+                            </thead>    
+                            <div id="datatable">
+                            <tbody>             
+                                <!-- Lines to edit By kili-->               
+                                <tr>
+                                    {% for key, value in hotelMitem %}
+                                    <td>{{ item[key] }}</td>                                                                    
+                                    <td>{{ item[value] }}</td>                                    
+                                    {% endfor %}
+                                </tr>                                       
+                                <!-- / Lines to edit By kili-->                                                                                                        
+                            </tbody>
+                            </div>                           
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>    
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    
+    <!--class footer-->
+    <footer class="footer">
+            <div class="container">
+                <span class="text-muted"> made with &hearts; <a href="https://www.youtube.com/channel/UCBk1cRGUSUZp2LOhWzDohGA">@pizzabakerz</a></span>
+            </div>
+        </footer>
+    <!-- / class footer-->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}"></script>
+</body>
+
+</html>
