@@ -101,9 +101,9 @@ def showHotel():
     for items in hotelMitem:
         print(items['hname'],items['iprice'])        
 #lines to edit
-    dataLoaded = load()
-    #return jsonify({"test":hotelMitem})
-    return render_template('index.html',listy=dataLoaded,hotelMitem=hotelMitem)
+    #dataLoaded = load()
+    return jsonify(hotelMitem=hotelMitem)
+    #return render_template('index.html',listy=dataLoaded,hotelMitem=hotelMitem)
 # / lines to edit
 
 if __name__ == '__main__':    

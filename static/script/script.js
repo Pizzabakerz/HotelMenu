@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
     // get list valaue by click
-
-    //LINES to EDIT BY KILI
-
     $('#hotelValue li').click(function () {        
         var text = $(this).text();        
         $('#hotelMenu').show();
@@ -15,10 +12,11 @@ $(document).ready(function () {
             data: {hotelName : $(this).text()}, 
         }).done(function(data){        
             console.log(data);
-                    
-            $('#datatable').load(' #datatable')                              
-        });
-    // LINES to EDIT BY KILI END
+            var html = data.hotelMitem.map(function(obj) {                
+                return `<tr><td>${obj.hname}</td><td>${obj.iprice}</td></tr>`;                
+              });
+              $("#datatable").append(html)
+        });    
     });    
 
     $('#hotelMenu').hide();
