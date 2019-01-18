@@ -23,9 +23,14 @@ def load():
 
 # Rout meathods
 @app.route('/')
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/home', methods=['POST'])
 def fun():             
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 
 @app.route('/reg', methods=['POST'])
@@ -34,7 +39,7 @@ def register():
     print(name)            
     db.create_collection(name)    
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 @app.route('/del', methods=['POST'])
 def delete():	
@@ -43,7 +48,7 @@ def delete():
     col = db[delhname]
     col.drop()
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 @app.route('/addupdate',methods=['POST'])
 def updateAdd():
@@ -56,7 +61,7 @@ def updateAdd():
     col.insert({"item":menuItem, "price":menuPrice})
 
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 @app.route('/updateupdate',methods=['POST'])
 def updateupdate():
@@ -69,7 +74,7 @@ def updateupdate():
     col.update({"item":menuItem},{"item":menuItem, "price":menuPrice})
 
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 @app.route('/deleteupdate',methods=['POST'])
 def deleteupdate():
@@ -82,7 +87,7 @@ def deleteupdate():
     col.remove({"item":menuItem})
 
     dataLoaded = load()
-    return render_template('index.html',listy=dataLoaded)
+    return render_template('home.html',listy=dataLoaded)
 
 @app.route('/showHotel',methods=['POST'])
 def showHotel():
@@ -103,7 +108,7 @@ def showHotel():
 #lines to edit
     #dataLoaded = load()
     return jsonify(hotelMitem=hotelMitem)
-    #return render_template('index.html',listy=dataLoaded,hotelMitem=hotelMitem)
+    #return render_template('home.html',listy=dataLoaded,hotelMitem=hotelMitem)
 # / lines to edit
 
 if __name__ == '__main__':    

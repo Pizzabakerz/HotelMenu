@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleLogin.css') }}">
+  <title>Hotel Application</title>
+</head>
+
+<body>
+  <div id="headingTxt">
+    <h1> Pizzabakerz Hotel Application</h1>
+  </div>
+  <div id="loginBase">
+    <form method="POST" action="/home">
+      <div class="form-group" id="uname">
+        <label for="inputUname">Username</label>
+        <input type="text" class="form-control" id="inputUname" aria-describedby="unameHelp" placeholder="Enter Username">
+      </div>
+      <div class="form-group" id="pwd">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+      <div id="loginBtn">
+        <button type="submit" id="lbtn" onclick="gotoPage()" class="btn btn-primary">Login</button>
+      </div>
+    </form>
+  </div>
+
+  <footer class="page-footer font-small blue">
+
+    <div class="footer-copyright text-center py-3">Made with &hearts;
+      <a href="#"> @Pizzabakerz</a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <script>
+    $(document).ready(function () {
+      $('#lbtn').attr('disabled', true);      
+        $('#inputPassword').keyup(function () {
+          if ($(this).val().length >= 8)
+            $('#lbtn').attr('disabled', false);
+          else
+            $('#lbtn').attr('disabled', true);
+        })
+        $('#lbtn').click(function () {
+          alert("hello");          
+        });
+    });
+  </script>
+
+</body>
+
+</html>

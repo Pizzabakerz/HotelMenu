@@ -1,0 +1,25 @@
+#uname{
+    position: sticky;
+    width: auto;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px
+}
+#pwd{
+    position: sticky;
+    width: auto;    
+    margin-left: 50px;
+    margin-right: 50px
+}
+#loginBtn{
+    position: sticky;
+    width: auto;    
+    margin-left: 50px;
+    margin-right: 50px
+}
+#headingTxt{
+    position: sticky;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px
+}
